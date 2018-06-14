@@ -1,0 +1,54 @@
+<div class="row">
+    <div class="col-12 col-md-6">
+        <label for="burger" id="burgerSearch">
+            Burger Search
+            <input type="text" name="burger" id="burgerAutocomplete">
+        </label>
+        <div class="outlineSection">
+            <h3 id="toggleAddBurger">
+                Not finding your burger? Add it!</h3>
+            <form id="addBurger" class="d-none">
+                <label for="burgerName">
+                    Burger Name
+                    <input type="text" id="burgerName" name="burgerName" placeholder="1. The Dagwood Burger" required>
+                </label>
+                <label for="burgerDescription">
+                    Description
+                    <textarea id="burgerDescription" name="burgerDescription" placeholder="The dagwood has everything: egg, onion, cheese, pickles, bacon, etc."
+                        required></textarea>
+                </label>
+                <button type="submit" class="btn btn-warning btn-lg">Add Burger</button>
+            </form>
+        </div>
+    </div>
+    <div class="col-12 col-md-6">
+        <form id="burgerSelction" class="d-none text-center">
+            <input type="hidden" name="burgerID" value="">
+            <input type="hidden" name="eaterID" value="">
+            <h2 id="burgerSelectionName" class="mb-3"></h2>
+            <p id="burgerSelectionDescription" class="mb-3"></p>
+            <div class="mb-4">
+                <label for="badRating" class="ratingRadio">
+                    <input type="radio" id="badRating" name="burgerRating" value="0" />
+                    <i class="far fa-frown bad"></i>
+                </label>
+                <label for="okayRating" class="ratingRadio">
+                    <input type="radio" id="okayRating" name="burgerRating" value="1" checked="checked" />
+                    <i class="far fa-meh okay"></i>
+                </label>
+                <label for="greatRating" class="ratingRadio">
+                    <input type="radio" id="greatRating" name="burgerRating" value="2" />
+                    <i class="far fa-smile great"></i>
+                </label>
+            </div>
+            <button id="signInButton" class="btn btn-warning btn-lg" type="submit">I ate this burger! </button>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col outlineSection">
+        <h3 class="text-center">Your Burger History (Burgers Eaten)</h3>
+
+    </div>
+</div>

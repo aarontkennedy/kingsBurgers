@@ -3,7 +3,6 @@
 const express = require("express");
 const exphbs = require("express-handlebars");
 const bodyParser = require("body-parser");
-const path = require("path");
 
 // Sets up the Express App
 // =========================================================
@@ -20,10 +19,12 @@ app.set('views', 'app/public/views');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json()); 
 
+app.use(express.static('app/public'));
+
 // Get the routes
-require('./app/routing/staticRoutes.js')(app);
-require('./app/routing/dynamicRoutes.js')(app);
-require('./app/routing/oauthRoutes.js')(app);
+require('./app/controller/routing/staticRoutes.js')(app);
+require('./app/controller/routing/dynamicRoutes.js')(app);
+//require('./app/controller/routing/oauthRoutes.js')(app);
 
 // Starts the server to begin listening
 // =========================================================

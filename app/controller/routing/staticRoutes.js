@@ -3,7 +3,7 @@ module.exports = function (app) {
     const path = require("path");
 
     app.get("/", function (req, res) {
-        res.render("home");
+        res.render("homeSignedIn");
     });
 
     app.get("/styles/style.css", function (req, res) {

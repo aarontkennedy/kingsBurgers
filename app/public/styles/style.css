@@ -1,0 +1,137 @@
+html, body {
+    height: 100%;
+}
+
+a {
+    color: brown;
+}
+a:hover {
+    color: darkred;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+section {
+    flex: 1 0 auto;
+}
+
+footer {
+    flex-shrink: 0;
+}
+
+header h1 {
+    display: inline-block;
+    font-family: 'Syncopate', sans-serif;
+}
+
+#burgerIcon {
+    display: inline-block;
+    height: 1.5em;
+    vertical-align: middle;
+}
+
+footer ul {
+    list-style-type: none;
+    text-align: center;
+}
+
+footer ul li {
+    margin: 0;
+    padding: 0;
+    display: inline;
+}
+
+footer ul li:after {
+    content: " | ";
+}
+
+footer ul li:last-child:after {
+    content: "";
+}
+
+label {
+    display:block;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 2em;
+}
+
+input, textarea {
+    display:block;
+    margin: 0 auto .5em auto;
+    max-width:100%;
+}
+
+#addBurger label {
+    font-size: 1.25em;
+}
+
+#toggleAddBurger {
+    cursor: pointer;
+    font-size: 1.25em;
+}
+
+.autocomplete-suggestions { 
+    border: 1px solid #999; 
+    border-top: none;
+    background: #FFF; 
+    overflow: auto; 
+
+}
+.autocomplete-suggestion { 
+    padding: 2px 5px; 
+    white-space: nowrap; 
+    overflow: hidden; 
+}
+
+.autocomplete-selected { 
+    background: #F0F0F0; 
+}
+
+.outlineSection {
+    border: thin solid rgb(224, 168, 0);
+    border-radius: 1em;
+    padding: 1em;
+    margin: 2em 1em 1em 1em;
+    text-align:center;
+}
+
+.ratingRadio {
+    display: inline;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+}
+
+.ratingRadio input, .ratingRadio i {
+    display: inline;
+}
+
+.ratingRadio input {
+    width:1px;
+    opacity: 0;
+}
+
+.ratingRadio input:checked + * {
+    background: yellow;
+    border-radius: 50%;
+    border: thin solid yellow;
+}
+
+.ratingRadio input + *:hover {
+    font-size:110%;
+}
+
+.bad {
+    color: red;
+}
+.okay {
+    color: brown;
+}
+.great {
+    color: darkgreen;
+}

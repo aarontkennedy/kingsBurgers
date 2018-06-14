@@ -30,7 +30,28 @@ const orm = {
             function (err, result) {
                 callback(err, result);
             });
-    }
+    },
+    addEater: function (id, name, callback) {
+        var queryString =
+            'INSERT INTO eaters (`google_id`, `name`) VALUES (?, ?) ON DUPLICATE KEY UPDATE `name`=?;';
+
+        connection.query(queryString,
+            [id, name, name],
+            function (err, result) {
+                callback(err, result);
+            });
+    },
+    addBurgerEaten: function (id, name, callback) {
+        var queryString =
+            'INSERT INTO eaters (`google_id`, `name`) VALUES (?, ?) ON DUPLICATE KEY UPDATE `name`=?;';
+
+        connection.query(queryString,
+            [id, name, name],
+            function (err, result) {
+                callback(err, result);
+            });
+    },
+
 };
 
 module.exports = orm;

@@ -18,11 +18,20 @@
 
     <header class="container mb-5">
         <div class="row p-2">
-            <div class="col"></div>
             <div class="col text-right">
+                {{#if eater.name}}
+                Welcome, {{eater.name}}!
+                {{/if}}
+
+                {{#if signedIn}}
+                <a id="signInButton" class="btn btn-warning" href="/" role="button">Sign Out
+                    <i title="Google Signin Required" class="fab fa-google"></i>
+                </a>
+                {{else}}
                 <a id="signInButton" class="btn btn-warning" href="signin" role="button">Sign In
                     <i title="Google Signin Required" class="fab fa-google"></i>
                 </a>
+                {{/if}}
             </div>
         </div>
         <div class="row">

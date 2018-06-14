@@ -8,19 +8,18 @@ CREATE TABLE burgers (
 );
 
 CREATE TABLE eaters (
-	`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	`google_id` VARCHAR(500) NOT NULL,
+	`google_id` VARCHAR(200) NOT NULL PRIMARY KEY,
 	`name` VARCHAR(100) NOT NULL
 );
 
-CREATE TABLE burgerEaten (
+CREATE TABLE burgersEaten (
 	`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	`burger_id` INT NOT NULL, 
-	`eater_id` INT NOT NULL, 
-	`rating` INT NOT NULL, 
-	`date` DATE,
+	`eater_id` VARCHAR(200) NOT NULL, 
+	`rating` INT NOT NULL DEFAULT 1, 
+	`date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	FOREIGN KEY (`burger_id`) REFERENCES burgers(`id`),
-	FOREIGN KEY (`eater_id`) REFERENCES eaters(`id`)
+	FOREIGN KEY (`eater_id`) REFERENCES eaters(`google_id`)
 );
 
 INSERT INTO burgers (`name`, `description`)

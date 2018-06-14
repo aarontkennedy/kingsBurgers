@@ -24,7 +24,7 @@ app.use(express.static('app/public'));
 // Get the routes
 require('./app/controller/routing/staticRoutes.js')(app);
 require('./app/controller/routing/dynamicRoutes.js')(app);
-//require('./app/controller/routing/oauthRoutes.js')(app);
+require('./app/controller/routing/oauthRoutes.js')(app);
 
 // Starts the server to begin listening
 // =========================================================

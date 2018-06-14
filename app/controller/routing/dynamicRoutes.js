@@ -1,6 +1,5 @@
 module.exports = function (app) {
 
-    const path = require("path");
     const orm = require("../../database/orm.js");
     let cachedBurgerSuggestionsJSON = null;
 

@@ -22,7 +22,7 @@ module.exports = function (app) {
     const oAuth2Client = new google.auth.OAuth2(
         process.env.client_id || keys.client_id,
         process.env.client_secret || keys.client_secret,
-        process.env.redirect_uris || keys.redirect_uris[1]
+        process.env.redirect_uris || keys.redirect_uris[0]
     );
 
     /**
@@ -44,6 +44,9 @@ module.exports = function (app) {
         res.redirect(authorizeUrl); // send them to google
     });
 
+
+    const orm = require("../../database/orm.js");
+
     app.get("/oauth2callback", async function (req, res) {
 
         const querystring = require('querystring');
@@ -57,15 +60,24 @@ module.exports = function (app) {
         }
         catch (error) {
             // if i reload the page, the grabbing of the token fails
-            // i think...  just attempt to move forward and use existing token?
             console.error(error);
+            return res.render("homeSignedOut", {signedIn: false});
         }
 
         //console.log("awaiting user info");
         const result = await plus.people.get({ userId: 'me' });
         //console.log(result.data);
-
-        res.render("", { });
+        const eater = {id: result.data.id, name: result.data.displayName};
+        orm.addEater(eater.id, eater.name, function (error, results) {
+                if (error) {
+                    console.log(error);
+                    return res.sendStatus(500);
+                }
+                res.render("homeSignedIn", {
+                    signedIn: true,
+                    eater: eater
+                });
+            });
     });
 
 }

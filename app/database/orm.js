@@ -9,6 +9,7 @@ const pool = require("./mySQLconnection.js");
 function performDatabaseCall(queryStr, parameters = null, callback) {
     pool.getConnection(function (err, connection) {
         if (err) {
+            console.log(err);
             connection.release();
             callback(err, { "code": 100, "status": "Error in connection database" });
         }

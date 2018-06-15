@@ -159,7 +159,7 @@ $(document).ready(function () {
         // this function here will take an array and using the classifier
         // in this case, i pass in the burger name, it makes a new object
         // with an entry with burgerName and how many times it occurs
-        function count (array, classifier) {
+        function count(array, classifier) {
             return array.reduce(function (counter, item) {
                 var p = classifier(item); // get the burgerName
                 // check if the burger name already exists
@@ -189,12 +189,12 @@ $(document).ready(function () {
 
         $.get("/api/count")
             .done(function (data) {
-                //console.log(data);
-
-                statisticsElem.append(`<h3>
+                if (data) {
+                    statisticsElem.append(`<h3>
                 <img src="burgerIconBullet.png"> ${data.burgers} Burgers Listed</h3>
                 <h3><img src="burgerIconBullet.png"> ${data.burgersEaten} Burgers Eaten</h3>
                 <h3><img src="burgerIconBullet.png"> ${data.eaters} Burger Trackers</h3>`);
+                }
             });
     }
     totalBurgerStatistics();

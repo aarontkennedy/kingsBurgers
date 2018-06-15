@@ -101,7 +101,9 @@ module.exports = function (app) {
                       rv[arr[i].TABLE_NAME] = arr[i].TABLE_ROWS;
                     return rv;
                   }
-                let prettierMappedData = mapDataObject(result);
+                  // pretty flukey case - when the app is run for the first time with
+                  // no data - I return null...  It is checked for on the client side.
+                let prettierMappedData = (result.length ? mapDataObject(result) : null);
                 return res.json(prettierMappedData);
             });
     });

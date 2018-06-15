@@ -15,11 +15,13 @@ module.exports = function (app) {
             if (results.length) {
                 let suggestions = [];
                 for (let i = 0; i < results.length; i++) {
-                    suggestions.push({value: results[i].name, 
-                                      data: results[i].id,
-                                      description: results[i].description });
+                    suggestions.push({
+                        value: results[i].name,
+                        data: results[i].id,
+                        description: results[i].description
+                    });
                 }
-                return res.json({suggestions: suggestions});
+                return res.json({ suggestions: suggestions });
             }
             else {
                 // no valid burger names were returned
@@ -39,7 +41,7 @@ module.exports = function (app) {
                     for (let i = 0; i < results.length; i++) {
                         suggestions.push(results[i].name);
                     }
-                    cachedBurgerSuggestionsJSON = {suggestions: suggestions};
+                    cachedBurgerSuggestionsJSON = { suggestions: suggestions };
                     return res.json(cachedBurgerSuggestionsJSON);
                 }, 5);
 
@@ -49,22 +51,65 @@ module.exports = function (app) {
     });
 
     app.post("/api/addBurger", function (req, res) {
-        console.log(req);
+        //console.log(req);
         if (!req.body.name || !req.body.description) {
             return res.sendStatus(400);
         }
-        orm.addBurger(req.body.name, 
-                      req.body.description,
-                    function (error, result){
-                        if (error) {
-                            console.log(error); 
-                            return res.sendStatus(500);
-                        }
-                        console.log(result);
-                        return res.json({id: result.insertID, 
-                                         name: req.body.name, 
-                                         description: req.body.description });
-                    });
+        orm.addBurger(req.body.name,
+            req.body.description,
+            function (error, result) {
+                if (error) {
+                    console.log(error);
+                    return res.sendStatus(500);
+                }
+                //console.log(result);
+                return res.json({
+                    id: result.insertID,
+                    name: req.body.name,
+                    description: req.body.description
+                });
+            });
     });
+
+    app.post("/api/addBurgerEaten", function (req, res) {
+        //console.log(req.body);
+        if (!req.body.burger_id || !req.body.eater_id) {
+            return res.sendStatus(400);
+        }
+
+        orm.addBurgerEaten(req.body.eater_id,
+            req.body.burger_id,
+            req.body.rating,
+            function (error, result) {
+                if (error) {
+                    //console.log(error);
+                    return res.sendStatus(500);
+                }
+                //console.log(result);
+                return res.json({
+                    id: result.insertID,
+                    eater_id: req.body.eater_id,
+                    burger_id: req.body.burger_id,
+                    rating: req.body.rating
+                });
+            });
+    });
+
+    app.get("/api/burgersEaten/:eater_id", function (req, res) {
+        if (!req.params.eater_id) {
+            return res.sendStatus(400);
+        }
+
+        orm.getBurgersEaten(req.params.eater_id,
+            function (error, result) {
+                if (error) {
+                    console.log(error);
+                    return res.sendStatus(500);
+                }
+                //console.log(result);
+                return res.json(result);
+            });
+    });
+
 
 };

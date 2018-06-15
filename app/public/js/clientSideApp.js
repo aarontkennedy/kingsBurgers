@@ -3,14 +3,16 @@ $(document).ready(function () {
     const toggleAddBurgerElem = $("#toggleAddBurger");
     const addBurgerElem = $("#addBurger");
     const diplayNoneClass = "d-none";
+    const burgerEatenForm = $("#burgerEatenForm");
+    const burgerHistory = $("#burgerHistory");
 
     // Initialize ajax autocomplete:
     $('#burgerAutocomplete').autocomplete({
         serviceUrl: '/autosuggest/burgers',
         onSelect: function (suggestion) {
-            populateSelectedBurger(suggestion.data, 
-                                   suggestion.value, 
-                                   suggestion.description);
+            populateSelectedBurger(suggestion.data,
+                suggestion.value,
+                suggestion.description);
         }
     });
 
@@ -32,8 +34,8 @@ $(document).ready(function () {
         else {
             $.post("/api/addBurger",
                 {
-                    name: $("input[name=burgerName]").val(),
-                    description: $("textarea[name=burgerDescription]").val()
+                    name: $("input[name=burgerName]").val().trim(),
+                    description: $("textarea[name=burgerDescription]").val().trim()
                 })
                 .done(function (data) {
                     populateSelectedBurger(data.id, data.name, data.description);
@@ -41,11 +43,69 @@ $(document).ready(function () {
         }
     });
 
-    function populateSelectedBurger (id, name, description) {
-        $("#burgerSelction").removeClass(diplayNoneClass);
+    function populateSelectedBurger(id, name, description) {
+        burgerEatenForm.removeClass(diplayNoneClass);
+        burgerHistory.hide();
         $("input[name=burgerID]").val(id);
         $("#burgerSelectionName").text(name);
         $("#burgerSelectionDescription").text(description);
     }
+
+    burgerEatenForm.submit(function (event) {
+        event.preventDefault();
+        burgerEatenForm.addClass(diplayNoneClass);
+
+        $.post("/api/addBurgerEaten",
+            {
+                burger_id: $("input[name=burgerID]").val().trim(),
+                eater_id: $("input[name=eaterID]").val().trim(),
+                rating: $("input[name=burgerRating]:checked").val().trim()
+            })
+            .done(function (data) {
+                showBurgerHistory();
+            });
+    });
+
+    function showBurgerHistory() {
+        burgerEatenForm.addClass(diplayNoneClass);
+        burgerHistory.show();
+
+        if ($("input[name=eaterID]").val()) {
+            $.get("/api/burgersEaten/" + $("input[name=eaterID]").val().trim())
+                .done(function (data) {
+                    console.log(data);
+
+                    let burgerHistoryTable = $("#burgerHistoryTable");
+
+                    burgerHistoryTable.children().remove();
+
+                    for (let i = 0; i < data.length; i++) {
+                        let rating = null;
+                        switch (data[i].burgerRating) {
+                            case 0:
+                                rating = `<i class="far fa-frown bad"></i>`;
+                                break;
+                            case 1:
+                                rating = `<i class="far fa-meh okay"></i>`;
+                                break;
+                            case 2:
+                                rating = `<i class="far fa-smile great"></i>`;
+                                break;
+                            default:
+                                rating = `ERROR!`;
+                                break;
+                        }
+
+                        let row = `<tr>
+                        <td>${data[i].burgerDate}</td>
+                        <td>${data[i].burgerName}</td>
+                        <td>${rating}</td>
+                        </tr>`;
+                        burgerHistoryTable.append(row);
+                    }
+                });
+        }
+    }
+    showBurgerHistory();
 
 });

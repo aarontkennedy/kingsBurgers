@@ -23,10 +23,10 @@ CREATE TABLE burgersEaten (
 );
 
 INSERT INTO burgers (`name`, `description`)
-VALUES ("1. The Double Play", "Swiss Cheese, Horseradish");
+VALUES ("The Double Play", "Swiss Cheese, Horseradish");
 
 INSERT INTO burgers (`name`, `description`)
-VALUES ("2. The Dugout", "Hashbrowns & Bacon");
+VALUES ("The Dugout", "Hashbrowns & Bacon");
 
 INSERT INTO burgers (`name`, `description`)
-VALUES ("3. The Slider", "Eggs & Hot Sauce");
+VALUES ("The Slider", "Eggs & Hot Sauce");

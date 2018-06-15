@@ -41,17 +41,29 @@ const orm = {
                 callback(err, result);
             });
     },
-    addBurgerEaten: function (id, name, callback) {
+    addBurgerEaten: function (eaterID, burgerID, burgerRating, callback) {
         var queryString =
-            'INSERT INTO eaters (`google_id`, `name`) VALUES (?, ?) ON DUPLICATE KEY UPDATE `name`=?;';
-
+            'INSERT INTO burgersEaten (`eater_id`, `burger_id`, `rating`) VALUES (?, ?, ?)';
         connection.query(queryString,
-            [id, name, name],
+            [eaterID, burgerID, burgerRating],
             function (err, result) {
                 callback(err, result);
             });
     },
-
+    getBurgersEaten: function (eaterID, callback) {
+        var queryString = `SELECT burgers.name AS burgerName,
+        rating AS burgerRating, 
+        DATE_FORMAT(date, "%m/%d/%Y") AS burgerDate
+        FROM burgers
+        INNER JOIN burgersEaten
+        ON burgers.id = burgersEaten.burger_id
+        INNER JOIN eaters
+        ON eaters.google_id = ?
+        ORDER BY burgerDate;`;
+        connection.query(queryString, [eaterID], function (err, result) {
+                callback(err, result);
+            });
+    } 
 };
 
 module.exports = orm;

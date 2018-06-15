@@ -10,7 +10,7 @@
             <form id="addBurger" class="d-none">
                 <label for="burgerName">
                     Burger Name
-                    <input type="text" id="burgerName" name="burgerName" placeholder="1. The Dagwood Burger" required>
+                    <input type="text" id="burgerName" name="burgerName" placeholder="The Dagwood Burger" required>
                 </label>
                 <label for="burgerDescription">
                     Description
@@ -22,7 +22,7 @@
         </div>
     </div>
     <div class="col-12 col-md-6">
-        <form id="burgerSelction" class="d-none text-center">
+        <form id="burgerEatenForm" class="d-none text-center">
             <input type="hidden" name="burgerID" value="">
             <input type="hidden" name="eaterID" value="{{eater.id}}">
             <h2 id="burgerSelectionName" class="mb-3"></h2>
@@ -43,12 +43,11 @@
             </div>
             <button id="signInButton" class="btn btn-warning btn-lg" type="submit">I ate this burger! </button>
         </form>
-    </div>
-</div>
 
-<div class="row">
-    <div class="col outlineSection">
-        <h3 class="text-center">Your Burger History (Burgers Eaten)</h3>
-
+        <div id="burgerHistory" class="col outlineSection">
+            <h3 class="text-center">Your Burger History</h3>
+            <table id="burgerHistoryTable">
+            </table>
+        </div>
     </div>
 </div>

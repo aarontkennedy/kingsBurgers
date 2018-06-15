@@ -50,7 +50,7 @@ module.exports = function (app) {
         });
     });
 
-    app.post("/api/addBurger", function (req, res) {
+    app.post("/api/burgers", function (req, res) {
         //console.log(req);
         if (!req.body.name || !req.body.description) {
             return res.sendStatus(400);
@@ -71,7 +71,40 @@ module.exports = function (app) {
             });
     });
 
-    app.post("/api/addBurgerEaten", function (req, res) {
+    app.get("/api/:table/count", function (req, res) {
+        //console.log(req);
+
+        orm.getRowCount(req.params.table, function (error, result) {
+                if (error) {
+                    console.log(error);
+                    return res.sendStatus(500);
+                }
+                console.log(result);
+                return res.json({ count: result.count });
+            });
+    });
+
+    app.get("/api/count", function (req, res) {
+        //console.log(req);
+
+        orm.getRowCountAllTables(function (error, result) {
+                if (error) {
+                    console.log(error);
+                    return res.sendStatus(500);
+                }
+                console.log(result);
+                function mapDataObject(arr) {
+                    var rv = {};
+                    for (var i = 0; i < arr.length; ++i)
+                      rv[arr[i].TABLE_NAME] = arr[i].TABLE_ROWS;
+                    return rv;
+                  }
+                let prettierMappedData = mapDataObject(result);
+                return res.json(prettierMappedData);
+            });
+    });
+
+    app.post("/api/burgerseaten", function (req, res) {
         //console.log(req.body);
         if (!req.body.burger_id || !req.body.eater_id) {
             return res.sendStatus(400);
@@ -95,7 +128,7 @@ module.exports = function (app) {
             });
     });
 
-    app.get("/api/burgersEaten/:eater_id", function (req, res) {
+    app.get("/api/burgerseaten/count/:eater_id", function (req, res) {
         if (!req.params.eater_id) {
             return res.sendStatus(400);
         }
@@ -111,19 +144,4 @@ module.exports = function (app) {
             });
     });
 
-    app.get("/api/burgersEaten/:eater_id/countDifferent", function (req, res) {
-        if (!req.params.eater_id) {
-            return res.sendStatus(400);
-        }
-
-        orm.getBurgersEatenDifferentCount(req.params.eater_id,
-            function (error, result) {
-                if (error) {
-                    console.log(error);
-                    return res.sendStatus(500);
-                }
-                console.log(result);
-                return res.json(result);
-            });
-    });
 };

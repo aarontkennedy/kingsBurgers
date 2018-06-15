@@ -32,7 +32,7 @@ $(document).ready(function () {
             addBurgerElem[0].classList.add('was-validated');
         }
         else {
-            $.post("/api/addBurger",
+            $.post("/api/burgers",
                 {
                     name: $("input[name=burgerName]").val().trim(),
                     description: $("textarea[name=burgerDescription]").val().trim()
@@ -62,7 +62,7 @@ $(document).ready(function () {
         const eID = $("input[name=eaterID]").val().trim();
         const rating = $("input[name=burgerRating]:checked").val().trim();
 
-        $.post("/api/addBurgerEaten",
+        $.post("/api/burgerseaten",
             {
                 burger_id: bID,
                 eater_id: eID,
@@ -78,7 +78,7 @@ $(document).ready(function () {
         burgerHistory.show();
 
         if ($("input[name=eaterID]").val()) {
-            $.get("/api/burgersEaten/" + $("input[name=eaterID]").val().trim())
+            $.get("/api/burgerseaten/" + $("input[name=eaterID]").val().trim())
                 .done(function (data) {
                     console.log(data);
 
@@ -119,19 +119,8 @@ $(document).ready(function () {
     }
     showBurgerHistory();
 
-/*    function getNumDifferentBurgersEaten() {
-        const eaterID = $("input[name=eaterID]").val();
-        if (eaterID) {
-            $.get("/api/burgersEaten/" + eaterID.trim() + "/countDifferent")
-                .done(function (data) {
-                    console.log(data);
-                    $("#numDifferentBurgers").text(data.length);
-                });
-        }
-    }*/
-
     function getNumDifferentBurgersEaten(burgersEaten) {
-        
+
         count = function (array, classifier) {
             return array.reduce(function (counter, item) {
                 var p = classifier(item);
@@ -149,11 +138,26 @@ $(document).ready(function () {
         let numDifBurgers = 0;
         for (let key in countByName) {
             numDifBurgers++;
-          }
+        }
 
         $("#numDifferentBurgers").text(numDifBurgers);
     }
-    
+
+    function totalBurgerStatistics() {
+        let statisticsElem = $("#totalBurgerStatistics");
+
+        $.get("/api/count")
+            .done(function (data) {
+                console.log(data);
+
+                statisticsElem.append(`<h3>
+                <img src="burgerIconBullet.png"> ${data.burgers} Burgers Listed</h3>
+                <h3><img src="burgerIconBullet.png"> ${data.burgersEaten} Burgers Eaten</h3>
+                <h3><img src="burgerIconBullet.png"> ${data.eaters} Burger Trackers</h3>`);
+            });
+    }
+    totalBurgerStatistics();
+
 
 
 });

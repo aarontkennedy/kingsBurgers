@@ -19,11 +19,7 @@
     <header class="container mb-5">
         <div class="row p-2">
             <div class="col text-right">
-                {{#if eater.name}}
-                Welcome, {{eater.name}}!
-                {{/if}}
-
-                {{#if signedIn}}
+                {{#if eater.name}} Welcome, {{eater.name}}! {{/if}} {{#if signedIn}}
                 <a id="signInButton" class="btn btn-warning" href="/" role="button">Sign Out
                     <i title="Google Signin Required" class="fab fa-google"></i>
                 </a>
@@ -76,8 +72,10 @@
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
         crossorigin="anonymous"></script>
-    <script type="text/javascript" src="js/jquery.autocomplete.js"></script>
+    <script type="text/javascript" src="js/jquery.autocomplete.js"></script> 
+
     <script type="text/javascript" src="js/clientSideApp.js"></script>
+
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe"
         crossorigin="anonymous"></script>
 

@@ -38,6 +38,7 @@ $(document).ready(function () {
                     description: $("textarea[name=burgerDescription]").val().trim()
                 })
                 .done(function (data) {
+                    debugger
                     populateSelectedBurger(data.id, data.name, data.description);
                 });
         }
@@ -55,11 +56,15 @@ $(document).ready(function () {
         event.preventDefault();
         burgerEatenForm.addClass(diplayNoneClass);
 
+        const bID = $("input[name=burgerID]").val().trim();
+        const eID = $("input[name=eaterID]").val().trim();
+        const rating = $("input[name=burgerRating]:checked").val().trim();
+        debugger
         $.post("/api/addBurgerEaten",
             {
-                burger_id: $("input[name=burgerID]").val().trim(),
-                eater_id: $("input[name=eaterID]").val().trim(),
-                rating: $("input[name=burgerRating]:checked").val().trim()
+                burger_id: bID,
+                eater_id: eID,
+                rating: rating
             })
             .done(function (data) {
                 showBurgerHistory();

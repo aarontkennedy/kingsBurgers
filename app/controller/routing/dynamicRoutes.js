@@ -62,9 +62,9 @@ module.exports = function (app) {
                     console.log(error);
                     return res.sendStatus(500);
                 }
-                //console.log(result);
+                console.log(result);
                 return res.json({
-                    id: result.insertID,
+                    id: result.insertId,
                     name: req.body.name,
                     description: req.body.description
                 });

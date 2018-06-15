@@ -38,7 +38,6 @@ $(document).ready(function () {
                     description: $("textarea[name=burgerDescription]").val().trim()
                 })
                 .done(function (data) {
-                    debugger
                     populateSelectedBurger(data.id, data.name, data.description);
                 });
         }
@@ -50,6 +49,9 @@ $(document).ready(function () {
         $("input[name=burgerID]").val(id);
         $("#burgerSelectionName").text(name);
         $("#burgerSelectionDescription").text(description);
+        // clear the form
+        $("input[name=burgerName]").val("");
+        $("textarea[name=burgerDescription]").val("");
     }
 
     burgerEatenForm.submit(function (event) {
@@ -59,7 +61,7 @@ $(document).ready(function () {
         const bID = $("input[name=burgerID]").val().trim();
         const eID = $("input[name=eaterID]").val().trim();
         const rating = $("input[name=burgerRating]:checked").val().trim();
-        debugger
+
         $.post("/api/addBurgerEaten",
             {
                 burger_id: bID,
@@ -79,6 +81,8 @@ $(document).ready(function () {
             $.get("/api/burgersEaten/" + $("input[name=eaterID]").val().trim())
                 .done(function (data) {
                     console.log(data);
+
+                    getNumDifferentBurgersEaten(data);
 
                     let burgerHistoryTable = $("#burgerHistoryTable");
 
@@ -108,9 +112,48 @@ $(document).ready(function () {
                         </tr>`;
                         burgerHistoryTable.append(row);
                     }
+
+                    $("#numBurgersEaten").text(data.length);
                 });
         }
     }
     showBurgerHistory();
+
+/*    function getNumDifferentBurgersEaten() {
+        const eaterID = $("input[name=eaterID]").val();
+        if (eaterID) {
+            $.get("/api/burgersEaten/" + eaterID.trim() + "/countDifferent")
+                .done(function (data) {
+                    console.log(data);
+                    $("#numDifferentBurgers").text(data.length);
+                });
+        }
+    }*/
+
+    function getNumDifferentBurgersEaten(burgersEaten) {
+        
+        count = function (array, classifier) {
+            return array.reduce(function (counter, item) {
+                var p = classifier(item);
+                counter[p] = counter.hasOwnProperty(p) ? counter[p] + 1 : 1;
+                return counter;
+            }, {})
+        };
+
+        countByName = count(burgersEaten, function (item) {
+            return item.burgerName
+        });
+
+        console.log(countByName);
+
+        let numDifBurgers = 0;
+        for (let key in countByName) {
+            numDifBurgers++;
+          }
+
+        $("#numDifferentBurgers").text(numDifBurgers);
+    }
+    
+
 
 });

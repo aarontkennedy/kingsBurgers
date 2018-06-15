@@ -44,10 +44,15 @@
             <button id="signInButton" class="btn btn-warning btn-lg" type="submit">I ate this burger! </button>
         </form>
 
-        <div id="burgerHistory" class="col outlineSection">
-            <h3 class="text-center">Your Burger History</h3>
+        <div id="burgerHistory" class="outlineSection">
+            <h3 class="text-center">Burger History</h3>
             <table id="burgerHistoryTable">
             </table>
+            <div id="burgerStatistics">
+                <p><img src="burgerIconBullet.png">
+                Total Burgers Eaten: <span id="numBurgersEaten"></span></p>
+                <p><img src="burgerIconBullet.png"> Total Different Burgers: <span id="numDifferentBurgers"></span></p>
+            </div>
         </div>
     </div>
 </div>

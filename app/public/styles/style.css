@@ -135,3 +135,18 @@ input, textarea {
 .great {
     color: darkgreen;
 }
+
+#burgerHistoryTable {
+    margin: 1em auto;
+    text-align: left;
+}
+
+#burgerHistoryTable td {
+    padding: 0 .5em 0 0;
+}
+
+#burgerStatistics {
+    display: inline-block;
+    margin: .25em auto 0 auto;
+    text-align: left;
+}

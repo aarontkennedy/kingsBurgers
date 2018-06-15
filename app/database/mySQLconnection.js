@@ -13,11 +13,21 @@ if (fs.existsSync(keyPath)) {
     // but we don't need it since we pull the keys from env
     keys = require(keyPath);
 }
-
+/*
 module.exports = mysql.createConnection({
     host: process.env.JAWSDB_host || keys.host,
     port: process.env.JAWSDB_port || keys.port,
     user: process.env.JAWSDB_user || keys.user,
     password: process.env.JAWSDB_password || keys.password,
     database: process.env.JAWSDB_database || keys.database
+});*/
+
+module.exports = mysql.createPool({
+    connectionLimit : 100, //important
+    host: process.env.JAWSDB_host || keys.host,
+    port: process.env.JAWSDB_port || keys.port,
+    user: process.env.JAWSDB_user || keys.user,
+    password: process.env.JAWSDB_password || keys.password,
+    database: process.env.JAWSDB_database || keys.database,
+    debug : false
 });

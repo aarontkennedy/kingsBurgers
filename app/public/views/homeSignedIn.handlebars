@@ -18,6 +18,7 @@
                         required></textarea>
                 </label>
                 <button type="submit" class="btn btn-warning btn-lg">Add Burger</button>
+                <a id="clearAddBurger" href="">Clear</a>
             </form>
         </div>
     </div>
@@ -42,6 +43,7 @@
                 </label>
             </div>
             <button id="signInButton" class="btn btn-warning btn-lg" type="submit">I ate this burger! </button>
+            <a id="cancelAddBurgerEaten" href="">Cancel</a>
         </form>
 
         <div id="burgerHistory" class="outlineSection">
@@ -49,9 +51,14 @@
             <table id="burgerHistoryTable">
             </table>
             <div id="burgerStatistics">
-                <p><img src="burgerIconBullet.png">
-                Total Burgers Eaten: <span id="numBurgersEaten"></span></p>
-                <p><img src="burgerIconBullet.png"> Total Different Burgers: <span id="numDifferentBurgers"></span></p>
+                <p>
+                    <img src="burgerIconBullet.png"> Total Burgers Eaten:
+                    <span id="numBurgersEaten"></span>
+                </p>
+                <p>
+                    <img src="burgerIconBullet.png"> Total Different Burgers:
+                    <span id="numDifferentBurgers"></span>
+                </p>
             </div>
         </div>
     </div>

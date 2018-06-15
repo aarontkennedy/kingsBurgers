@@ -1,7 +1,11 @@
 const pool = require("./mySQLconnection.js");
 
-// Object Relational Mapper (ORM)
+// Object Relational Mapper (ORM) Kind of...
 
+// this function provides the meat and potatoes of all my database calls
+// it enables me to provide each call a little bit of error handling and
+// it also takes care of freeing up connection resources after each call
+// back to the pool
 function performDatabaseCall(queryStr, parameters = null, callback) {
     pool.getConnection(function (err, connection) {
         if (err) {
@@ -10,11 +14,14 @@ function performDatabaseCall(queryStr, parameters = null, callback) {
         }
         //console.log('connected as id ' + connection.threadId);
 
+        // conduct the actual requested query
         connection.query(queryStr, parameters, function (err, result) {
             connection.release();
             callback(err, result);
         });
 
+        // must be listening for an error event while the query is running in case
+        // it can't return?
         connection.on('error', function (err) {
             return callback(err, { "code": 100, "status": "Error in connection database" });
         });

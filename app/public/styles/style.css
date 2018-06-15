@@ -150,3 +150,7 @@ input, textarea {
     margin: .25em auto 0 auto;
     text-align: left;
 }
+
+.iframeHolder {
+    display: inline-block;
+}

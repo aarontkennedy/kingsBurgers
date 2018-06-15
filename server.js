@@ -19,6 +19,7 @@ app.set('views', 'app/public/views');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json()); 
 
+// express will handle the static files
 app.use(express.static('app/public'));
 
 // Get the routes

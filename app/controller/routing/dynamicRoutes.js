@@ -39,7 +39,11 @@ module.exports = function (app) {
 
                     let suggestions = [];
                     for (let i = 0; i < results.length; i++) {
-                        suggestions.push(results[i].name);
+                        suggestions.push({
+                            value: results[i].name,
+                            data: results[i].id,
+                            description: results[i].description
+                        });
                     }
                     cachedBurgerSuggestionsJSON = { suggestions: suggestions };
                     return res.json(cachedBurgerSuggestionsJSON);

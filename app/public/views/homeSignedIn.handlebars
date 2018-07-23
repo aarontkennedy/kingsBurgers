@@ -6,7 +6,7 @@
         </label>
         <div class="outlineSection">
             <h3 id="toggleAddBurger">
-                Not finding your burger? Add it!</h3>
+                Not finding a burger? Add it!</h3>
             <form id="addBurger" class="d-none">
                 <label for="burgerName">
                     Burger Name
@@ -25,7 +25,7 @@
     <div class="col-12 col-md-6">
         <form id="burgerEatenForm" class="d-none text-center">
             <input type="hidden" name="burgerID" value="">
-            <input type="hidden" name="eaterID" value="{{eater.id}}">
+            <input type="hidden" name="eaterID" value="{{eater.google_id}}">
             <h2 id="burgerSelectionName" class="mb-3"></h2>
             <p id="burgerSelectionDescription" class="mb-3"></p>
             <div class="mb-4">
@@ -48,15 +48,16 @@
 
         <div id="burgerHistory" class="outlineSection">
             <h3 class="text-center">Burger History</h3>
-            <table id="burgerHistoryTable">
-            </table>
+            <div id="burgerHistoryTable">
+                <table></table>
+            </div>
             <div id="burgerStatistics">
                 <p>
-                    <img src="burgerIconBullet.png"> Total Burgers Eaten:
+                    <img src="/burgerIconBullet.png"> Total Burgers Eaten:
                     <span id="numBurgersEaten"></span>
                 </p>
                 <p>
-                    <img src="burgerIconBullet.png"> Total Different Burgers:
+                    <img src="/burgerIconBullet.png"> Total Different Burgers:
                     <span id="numDifferentBurgers"></span>
                 </p>
             </div>

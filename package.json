@@ -4,7 +4,7 @@
   "description": "Web app to keep track of which King's burgers you have eaten.",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha test/testFrontPage.js test/testApp.js",
     "start": "node server.js"
   },
   "repository": {

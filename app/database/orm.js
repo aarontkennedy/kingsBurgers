@@ -19,12 +19,6 @@ function performDatabaseCall(queryStr, parameters = null, callback) {
             connection.release();
             callback(err, result);
         });
-
-        // must be listening for an error event while the query is running in case
-        // it can't return?
-        connection.on('error', function (err) {
-            return callback(err, { "code": 100, "status": "Error in connection database" });
-        });
     });
 }
 
@@ -53,6 +47,10 @@ const orm = {
 
         performDatabaseCall(queryString, [id, name, name], callback);
     },
+    getEater: function (id, callback) {
+        var queryString = 'SELECT * FROM eaters WHERE google_id LIKE ?';
+        performDatabaseCall(queryString, [id], callback);
+    },
     addBurgerEaten: function (eaterID, burgerID, burgerRating, callback) {
         var queryString =
             'INSERT INTO burgersEaten (`eater_id`, `burger_id`, `rating`) VALUES (?, ?, ?)';
@@ -67,7 +65,7 @@ const orm = {
             ON burgers.id = burgersEaten.burger_id
             INNER JOIN eaters
             ON eaters.google_id = ?
-            ORDER BY burgerDate;`;
+            ORDER BY burgerDate DESC;`;
         performDatabaseCall(queryString, [eaterID], callback);
 
     },

@@ -4,7 +4,7 @@ $(document).ready(function () {
     const addBurgerElem = $("#addBurger");
     const diplayNoneClass = "d-none";
     const burgerEatenForm = $("#burgerEatenForm");
-    const burgerHistory = $("#burgerHistory");
+    const burgerHistory = $("#burgerHistory table");
 
     // Initialize ajax autocomplete:
     $('#burgerAutocomplete').autocomplete({

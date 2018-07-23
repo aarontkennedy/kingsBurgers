@@ -139,6 +139,9 @@ input, textarea {
 #burgerHistoryTable {
     margin: 1em auto;
     text-align: left;
+    max-height: 200px;
+    overflow: scroll;
+    background-color: rgb(250, 250, 250);
 }
 
 #burgerHistoryTable td {

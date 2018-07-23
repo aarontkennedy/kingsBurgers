@@ -61,23 +61,23 @@ module.exports = function (app) {
         catch (error) {
             // if i reload the page, the grabbing of the token fails
             console.error(error);
-            return res.render("homeSignedOut", {signedIn: false});
+            return res.render("homeSignedOut", { signedIn: false });
         }
 
         //console.log("awaiting user info");
         const result = await plus.people.get({ userId: 'me' });
         //console.log(result.data);
-        const eater = {id: result.data.id, name: result.data.displayName};
+        const eater = { id: result.data.id, name: result.data.displayName };
         orm.addEater(eater.id, eater.name, function (error, results) {
-                if (error) {
-                    console.log(error);
-                    return res.sendStatus(500);
-                }
-                res.render("homeSignedIn", {
-                    signedIn: true,
-                    eater: eater
-                });
-            });
+            if (error) {
+                console.log(error);
+                return res.sendStatus(500);
+            }
+
+            // we have that token in our url currently - redirect to get rid of it and pass the user id to the next step/page
+            res.redirect("/app/" + eater.id);
+
+        });
     });
 
 }

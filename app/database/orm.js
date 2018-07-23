@@ -1,4 +1,6 @@
-const pool = require("./mySQLconnection.js");
+const databaseConnectionInfo = require("./mySQLconnection.js");
+const mysql = require("mysql");
+const pool = mysql.createPool(databaseConnectionInfo);
 
 // Object Relational Mapper (ORM) Kind of...
 
@@ -83,7 +85,7 @@ const orm = {
     getRowCountAllTables: function (callback) {
         var queryString = "SELECT TABLE_NAME, TABLE_ROWS ";
         queryString += "FROM `information_schema`.`tables` " 
-        queryString += "WHERE `table_schema` = 'kingsBurgers_db';";
+        queryString += "WHERE `table_schema` = '"+databaseConnectionInfo.database+"';";
         performDatabaseCall(queryString, callback);
     },
 };

@@ -1,4 +1,3 @@
-var mysql = require("mysql");
 
 //
 //  The connection needed for the database
@@ -22,7 +21,7 @@ module.exports = mysql.createConnection({
     database: process.env.JAWSDB_database || keys.database
 });*/
 
-module.exports = mysql.createPool({
+module.exports = {
     connectionLimit : 100, //important
     host: process.env.JAWSDB_host || keys.host,
     port: process.env.JAWSDB_port || keys.port,
@@ -30,4 +29,4 @@ module.exports = mysql.createPool({
     password: process.env.JAWSDB_password || keys.password,
     database: process.env.JAWSDB_database || keys.database,
     debug : false
-});
+};

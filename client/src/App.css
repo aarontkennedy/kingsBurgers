@@ -32,3 +32,26 @@ header h1 {
   height: 1.5em;
   vertical-align: middle;
 }
+
+label {
+  display:block;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 2em;
+}
+
+.outlineSection {
+  border: thin solid rgb(224, 168, 0);
+  border-radius: 1em;
+  padding: 1em;
+  margin: 2em 1em 1em 1em;
+  text-align:center;
+}
+
+.iframeHolder {
+  display: inline-block;
+}
+
+.Pointer {
+  cursor: pointer;
+}

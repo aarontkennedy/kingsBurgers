@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
 import './Header.css';
 import { GoogleLogout } from 'react-google-login';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 class Header extends Component {
   render() {
@@ -11,6 +9,12 @@ class Header extends Component {
         <div className="row p-2">
           <div className="col text-right">
             {this.props.first ? `Welcome, ${this.props.first}! ` : ""}
+
+            {this.props.imageURL ? 
+              <img alt={this.props.first} 
+              className="Header-EaterPhoto"
+              src={this.props.imageURL} />
+            : ""}
 
             {this.props.first ?
               <GoogleLogout

@@ -4,3 +4,10 @@
   height: 1.5em;
   vertical-align: middle;
 }
+
+.Header-EaterPhoto {
+  display: inline-block;
+  height: 2rem;
+  vertical-align: middle;
+  margin-right: .25rem;
+}

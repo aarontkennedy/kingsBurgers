@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import callServer from '../utils/callServer';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class BurgerHistory extends Component {
 
@@ -54,11 +54,11 @@ class BurgerHistory extends Component {
     getRatingIcon(rating) {
         switch (rating) {
             case 0: 
-                return <FontAwesomeIcon className="bad" icon="frown"/>;
+                return <FontAwesomeIcon className="bad" icon={['far', 'sad-tear']}/>;
             case 1:
-                return <FontAwesomeIcon className="okay" icon="meh"/>;
+                return <FontAwesomeIcon className="okay" icon={['far', 'meh']}/>;
             case 2:
-                return<FontAwesomeIcon className="great" icon="smile"/>;
+                return<FontAwesomeIcon className="great" icon={['far', 'grin-stars']}/>;
             default:
                 return `ERROR!`;
         }
@@ -90,13 +90,7 @@ class BurgerHistory extends Component {
                     <img alt="" src="/images/burgerIconBullet.png" /> Total Different Burgers: {this.getNumDifferentBurgersEaten()}
                 </p>
                 <p className="text-center">
-                    {/*<!-- https://developers.facebook.com/docs/plugins/like-button# --> */}
-                    <span className="fb-like" style={{ verticalAlign: "7px" }} data-href="https://kingsburgers.herokuapp.com" data-layout="button_count"
-                        data-action="like" data-size="small" data-show-faces="false" data-share="true"></span>
-                    {/*<!-- https://publish.twitter.com/?buttonType=TweetButton&widget=Button --> */}
-                    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" className="twitter-share-button" data-url="https://kingsburgers.herokuapp.com"
-                        data-show-count="false">Tweet</a>
-                    <script async src="https://platform.twitter.com/widgets.js" charSet="utf-8"></script>
+                    {/* social media here */}
                 </p>
             </div>
         </div>);

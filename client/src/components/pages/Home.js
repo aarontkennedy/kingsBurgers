@@ -35,13 +35,7 @@ class Home extends Component {
                         width="400" height="300" frameBorder="0" style={{ border: 0 }} allowFullScreen></iframe>
                 </div>
                 <div className="text-center">
-                    {/*<!-- https://developers.facebook.com/docs/plugins/like-button# -->*/}
-                    <span className="fb-like" style={{ verticalAlign: "7px" }} data-href="https://kingsburgers.herokuapp.com" data-layout="button_count"
-                        data-action="like" data-size="small" data-show-faces="false" data-share="true"></span>
-                    {/*<!-- https://publish.twitter.com/?buttonType=TweetButton&widget=Button --> */}
-                    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" className="twitter-share-button" data-url="https://kingsburgers.herokuapp.com"
-                        data-show-count="false">Tweet</a>
-                    <script async src="https://platform.twitter.com/widgets.js" charSet="utf-8"></script>
+                    {/* put social media here */}
                 </div>
             </div>
         </div>);

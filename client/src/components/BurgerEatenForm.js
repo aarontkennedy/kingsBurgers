@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class BurgerEatenForm extends Component {
     state = {
@@ -32,7 +33,7 @@ class BurgerEatenForm extends Component {
                         name="burgerRating"
                         onChange={this.handleRatingChange}
                         value="0" />
-                    <i className="far fa-frown bad" />
+                    <FontAwesomeIcon className="bad" icon={['far', 'sad-tear']} />
                 </label>
                 <label htmlFor="okayRating" className="ratingRadio">
                     <input type="radio"
@@ -41,7 +42,7 @@ class BurgerEatenForm extends Component {
                         onChange={this.handleRatingChange}
                         value="1"
                         defaultChecked="checked" />
-                    <i className="far fa-meh okay" />
+                    <FontAwesomeIcon className="okay" icon={['far', 'meh']} />
                 </label>
                 <label htmlFor="greatRating" className="ratingRadio">
                     <input type="radio"
@@ -49,11 +50,12 @@ class BurgerEatenForm extends Component {
                         name="burgerRating"
                         onChange={this.handleRatingChange}
                         value="2" />
-                    <i className="far fa-smile great" />
+                    <FontAwesomeIcon className="great" icon={['far', 'grin-stars']} />
                 </label>
             </div>
-            <button id="signInButton" className="btn btn-warning btn-lg" type="submit">I ate this burger! </button>
-            <a id="cancelAddBurgerEaten" href="">Cancel</a>
+            <button className="btn btn-warning btn-lg Button-MR" type="submit">I ate this burger!</button>&nbsp;
+            <span className="Pointer"
+                onClick={this.props.burgerEatenFormClear}>Cancel</span>
         </form>);
     }
 

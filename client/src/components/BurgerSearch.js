@@ -84,12 +84,15 @@ class BurgerSearch extends Component {
     render() {
         return (
             <div>
-                {!this.state.display ?
-                    <label htmlFor="burgerAutocomplete" id="burgerSearch">
-                        Burger Search
+                <label
+                    style={{
+                        display: !this.state.display ? 'block' : 'none'
+                    }}
+                    htmlFor="burgerAutocomplete"
+                    id="burgerSearch">
+                    Burger Search
                 <input type="text" name="burger" id="burgerAutocomplete" />
-                    </label>
-                    : ""}
+                </label>
 
                 <div className="outlineSection">
                     <h3 id="toggleAddBurger" onClick={this.handleToggleDisplay}>
@@ -116,15 +119,15 @@ class BurgerSearch extends Component {
                                     required />
                             </label>
                             <button type="submit"
-                                className="btn btn-warning btn-lg">
+                                className="btn btn-warning btn-lg Button-MR">
                                 Add Burger
                             </button>
-                            <span id="clearAddBurger"
+                            <span className="Pointer"
                                 onClick={this.handleFormCancel}>Cancel</span>
                         </form>
                         : ""}
                 </div>
-            </div>);
+            </div >);
     }
 }
 

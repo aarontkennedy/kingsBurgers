@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Home.css';
+import './Dashboard.css';
 import BurgerSearch from '../BurgerSearch';
 import BurgerEatenForm from '../BurgerEatenForm';
 import BurgerHistory from '../BurgerHistory';
@@ -29,6 +29,10 @@ class Dashboard extends Component {
             this.props.userID,
             this.state.burgerID,
             rating);
+        this.burgerEatenFormClear();
+    }
+
+    burgerEatenFormClear = () => {
         this.setState({
             burgerID: "",
             burgerName: "",
@@ -50,7 +54,8 @@ class Dashboard extends Component {
                         burgerID={this.state.burgerID}
                         burgerName={this.state.burgerName}
                         burgerDescription={this.state.burgerDescription}
-                        handleRatingSubmit={this.addBurgerEatenSubmit} />
+                        handleRatingSubmit={this.addBurgerEatenSubmit} 
+                        burgerEatenFormClear={this.burgerEatenFormClear} />
 
                     <BurgerHistory
                         eaterID={this.props.userID} />

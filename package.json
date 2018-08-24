@@ -5,7 +5,13 @@
   "main": "server.js",
   "scripts": {
     "test": "mocha test/testFrontPage.js test/testApp.js",
-    "start": "node server.js"
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:prod": "node server.js",
+    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
+    "client": "cd client && npm start",
+    "install": "cd client && npm install",
+    "build": "cd client && npm run build",
+    "heroku-postbuild": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -17,12 +23,16 @@
     "url": "https://github.com/aarontkennedy/kingsBurgers/issues"
   },
   "homepage": "https://github.com/aarontkennedy/kingsBurgers#readme",
+  "devDependencies": {
+    "concurrently": "^3.5.0",
+    "nodemon": "^1.11.0",
+    "if-env": "^1.0.4"
+  },
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
-    "express-handlebars": "^3.0.0",
     "googleapis": "^32.0.0",
-    "mysql": "^2.15.0",
-    "path": "^0.12.7"
+    "if-env": "^1.0.4",
+    "mysql": "^2.15.0"
   }
 }

@@ -16,17 +16,6 @@ $(document).ready(function () {
         }
     });
 
-    // this toggles the display of the add burger form 
-    // helps keep the display less cluttered
-    toggleAddBurgerElem.click(function () {
-        if (addBurgerElem.hasClass(diplayNoneClass)) {
-            addBurgerElem.removeClass(diplayNoneClass);
-        }
-        else {
-            addBurgerElem.addClass(diplayNoneClass);
-        }
-    });
-
     // handles the validation of the add burger form and
     // sends the post request to the server
     addBurgerElem.submit(function (event) {
@@ -183,21 +172,7 @@ $(document).ready(function () {
         $("#numDifferentBurgers").text(numDifBurgers);
     }
 
-    // get the total burger statistics for the front page
-    function totalBurgerStatistics() {
-        let statisticsElem = $("#totalBurgerStatistics");
 
-        $.get("/api/count")
-            .done(function (data) {
-                if (data) {
-                    statisticsElem.append(`<h3>
-                <img src="burgerIconBullet.png"> ${data.burgers} Burgers Listed</h3>
-                <h3><img src="burgerIconBullet.png"> ${data.burgersEaten} Burgers Eaten</h3>
-                <h3><img src="burgerIconBullet.png"> ${data.eaters} Burger Trackers</h3>`);
-                }
-            });
-    }
-    totalBurgerStatistics();
 
 
 

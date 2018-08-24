@@ -1,7 +1,25 @@
 module.exports = function (app) {
 
-    const orm = require("../../database/orm.js");
+    const orm = require("../../models/orm.js");
     let cachedBurgerSuggestionsJSON = null;
+
+    app.post("/api/eaters", function (req, res) {
+        console.log("/api/eaters");
+        console.log(req.body);
+        if (!req.body.googleID) {
+            return res.sendStatus(400);
+        }
+
+        orm.addEater(req.body.googleID, req.body.first,
+            function (error, result) {
+                if (error) {
+                    console.log(error);
+                    return res.sendStatus(500);
+                }
+                //console.log(result);
+                return res.json(result);
+            });
+    });
 
     app.get("/autosuggest/burgers", function (req, res) {
         //console.log(req.query.query);
@@ -114,7 +132,7 @@ module.exports = function (app) {
 
     // creates a record of a particular burger eaten by a particular person
     app.post("/api/burgerseaten", function (req, res) {
-        //console.log(req.body);
+        console.log(req.body);
         if (!req.body.burger_id || !req.body.eater_id) {
             return res.sendStatus(400);
         }
@@ -124,7 +142,7 @@ module.exports = function (app) {
             req.body.rating,
             function (error, result) {
                 if (error) {
-                    //console.log(error);
+                    console.log(error);
                     return res.sendStatus(500);
                 }
                 //console.log(result);

@@ -1,0 +1,32 @@
+.Home {
+    display: flex;
+    height:100%;
+    flex-direction: column;
+}
+
+.Home header {
+    flex-shrink: 0;
+} 
+
+.Home section {
+    flex: 1 0 auto;
+}
+
+.Home footer {
+    flex-shrink: 0;
+}  
+
+.Home-Definition {
+    font-family: Arial, Helvetica, sans-serif;
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+}
+
+.Home-Description {
+    margin: 1rem 0;
+    font-weight: bold;
+}
+
+.advertising-section {
+    margin-top: 2rem;
+}

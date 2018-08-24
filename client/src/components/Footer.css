@@ -1,0 +1,19 @@
+
+footer ul {
+    list-style-type: none;
+    text-align: center;
+}
+
+footer ul li {
+    margin: 0;
+    padding: 0;
+    display: inline;
+}
+
+footer ul li:after {
+    content: " | ";
+}
+
+footer ul li:last-child:after {
+    content: "";
+}

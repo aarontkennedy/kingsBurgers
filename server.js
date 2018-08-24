@@ -1,34 +1,28 @@
 // Dependencies
 // =========================================================
 const express = require("express");
-const exphbs = require("express-handlebars");
 const bodyParser = require("body-parser");
+
 
 // Sets up the Express App
 // =========================================================
-let app = express();
-const PORT = process.env.PORT || 3000;
-
-// Set Handlebars as the default templating engine.
-app.engine("handlebars", exphbs({ layoutsDir: "app/public/views/layouts", 
-                                  defaultLayout: "main" }));
-app.set("view engine", "handlebars");
-app.set('views', 'app/public/views');
+const app = express();
+const PORT = process.env.PORT || 3001;
 
 // Sets up the Express app to handle data parsing
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json()); 
+app.use(bodyParser.json());
 
 // express will handle the static files
-app.use(express.static('app/public'));
+app.use(express.static('./client/build/'));
 
-// Get the routes
-require('./app/controller/routing/staticRoutes.js')(app);
-require('./app/controller/routing/dynamicRoutes.js')(app);
-require('./app/controller/routing/oauthRoutes.js')(app);
+require('./controller/routes/apiRoutes.js')(app);
 
-// Starts the server to begin listening
-// =========================================================
+// this picks up any other routes and sends them to the react app to handle - needed?
+app.get('*', function(req, res) {
+  res.sendFile('./client/build/index.html' , { root : __dirname});
+});
+
 app.listen(PORT, function () {
   console.log("App listening on PORT " + PORT);
 });

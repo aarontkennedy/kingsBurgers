@@ -19,15 +19,4 @@ export default {
     return axios.get(`/api/burgerseaten/${eaterID.trim()}`);
   }
 
-  /*
-  get /autosuggest/burgers"
-
-  app.post("/api/burgers"
-
-  get("/api/count",
-
-  .post("/api/burgerseaten"
-
-  pp.get("/api/burgerseaten/:eater_id",*/
-
 };

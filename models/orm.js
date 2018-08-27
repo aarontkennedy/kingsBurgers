@@ -43,11 +43,25 @@ const orm = {
             "INSERT INTO burgers (`name`, `description`) VALUES (?, ?);";
         performDatabaseCall(queryString, [name, description], callback);
     },
-    addEater: function (id, name, callback) {
+    addEater: function (id, first, last, email, imageURL, callback) {
         var queryString =
-            'INSERT INTO eaters (`google_id`, `name`) VALUES (?, ?) ON DUPLICATE KEY UPDATE `name`=?;';
+            `INSERT INTO eaters (google_id, first, last, email, imageURL, date_created, last_visit) 
+            VALUES (?, ?, ?, ?, ?, NOW(), NOW()) 
+            ON DUPLICATE KEY 
+            UPDATE first=?, last=?, email=?, imageURL=?, last_visit=NOW();`;
 
-        performDatabaseCall(queryString, [id, name, name], callback);
+        performDatabaseCall(queryString,
+            [
+                id,
+                first,
+                last,
+                email,
+                imageURL,
+                first, 
+                last, 
+                email, 
+                imageURL],
+            callback);
     },
     getEater: function (id, callback) {
         var queryString = 'SELECT * FROM eaters WHERE google_id LIKE ?';
@@ -84,8 +98,8 @@ const orm = {
     },
     getRowCountAllTables: function (callback) {
         var queryString = "SELECT TABLE_NAME, TABLE_ROWS ";
-        queryString += "FROM `information_schema`.`tables` " 
-        queryString += "WHERE `table_schema` = '"+databaseConnectionInfo.database+"';";
+        queryString += "FROM `information_schema`.`tables` "
+        queryString += "WHERE `table_schema` = '" + databaseConnectionInfo.database + "';";
         performDatabaseCall(queryString, callback);
     },
 };

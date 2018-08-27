@@ -22,14 +22,12 @@ class App extends Component {
     this.localStorage = new LocalProfileStorage("kingsburgersapp");
     const alreadyLoggedInProfile = this.localStorage.retrieve();
     if (alreadyLoggedInProfile) {
-      console.log("alreadyLoggedInProfile:");
       console.log(alreadyLoggedInProfile);
       this.setState(alreadyLoggedInProfile);
     }
   }
 
   successfulSignIn = (response) => {
-    console.log(response);
     console.log(response.profileObj);
     let profile = {
       googleID: response.profileObj.googleId,

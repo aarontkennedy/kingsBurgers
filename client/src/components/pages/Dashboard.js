@@ -19,17 +19,25 @@ class Dashboard extends Component {
         this.setState({
             burgerID: id,
             burgerName: name,
-            burgerDescription: description
+            burgerDescription: description,
+            updateHistory: false
         });
-        console.log(this.state);
+        //console.log(this.state);
     }
 
     addBurgerEatenSubmit = (rating) => {
         callServer.addBurgerEaten(
             this.props.userID,
             this.state.burgerID,
-            rating);
+            rating)
+            .then(()=>{
+                this.setState({updateHistory: true});
+            });
         this.burgerEatenFormClear();
+    }
+
+    historyUpdated = () => {
+        this.setState({updateHistory: false});
     }
 
     burgerEatenFormClear = () => {
@@ -39,7 +47,6 @@ class Dashboard extends Component {
             burgerDescription: ""
         });
     }
-
 
     render() {
         return (
@@ -58,7 +65,10 @@ class Dashboard extends Component {
                         burgerEatenFormClear={this.burgerEatenFormClear} />
 
                     <BurgerHistory
-                        eaterID={this.props.userID} />
+                        eaterID={this.props.userID} 
+                        updateHistory={this.state.updateHistory}
+                        updatedHistory={this.historyUpdated}
+                        />
                 </div>
             </div>);
     }

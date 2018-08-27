@@ -8,8 +8,13 @@ CREATE TABLE burgers (
 );
 
 CREATE TABLE eaters (
-	`google_id` VARCHAR(200) NOT NULL PRIMARY KEY,
-	`name` VARCHAR(100) NOT NULL
+	`google_id` VARCHAR(100) NOT NULL PRIMARY KEY,
+	`first` VARCHAR(100) NOT NULL,
+	`last` VARCHAR(100) NOT NULL,
+	`email` VARCHAR(100) NOT NULL,
+	`imageURL` VARCHAR(200) NOT NULL,
+	`date_created` DATETIME DEFAULT CURRENT_TIMESTAMP,
+	`last_visit` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 CREATE TABLE burgersEaten (
@@ -21,12 +26,3 @@ CREATE TABLE burgersEaten (
 	FOREIGN KEY (`burger_id`) REFERENCES burgers(`id`),
 	FOREIGN KEY (`eater_id`) REFERENCES eaters(`google_id`)
 );
-
-INSERT INTO burgers (`name`, `description`)
-VALUES ("The Double Play", "Swiss Cheese, Horseradish");
-
-INSERT INTO burgers (`name`, `description`)
-VALUES ("The Dugout", "Hashbrowns & Bacon");
-
-INSERT INTO burgers (`name`, `description`)
-VALUES ("The Slider", "Eggs & Hot Sauce");

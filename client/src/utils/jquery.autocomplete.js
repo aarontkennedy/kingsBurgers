@@ -11,7 +11,7 @@
 
 // Expose plugin as an AMD module if AMD loader is present:
 (function (factory) {
-  "use strict";
+  //"use strict";
   if (typeof define === 'function' && define.amd) {
       // AMD. Register as an anonymous module.
       define(['jquery'], factory);
@@ -23,7 +23,7 @@
       factory(jQuery);
   }
 }(function ($) {
-  'use strict';
+  //'use strict';
 
   var
       utils = (function () {
@@ -141,8 +141,9 @@
 
       var pattern = '(' + utils.escapeRegExChars(currentValue) + ')';
 
+      // CHANGED .replace(new RegExp(pattern, 'gi'), '<strong>$1<\/strong>')
       return suggestion.value
-          .replace(new RegExp(pattern, 'gi'), '<strong>$1<\/strong>')
+          .replace(new RegExp(pattern, 'gi'), '<strong>$1</strong>')
           .replace(/&/g, '&amp;')
           .replace(/</g, '&lt;')
           .replace(/>/g, '&gt;')
@@ -439,10 +440,12 @@
               return;
           }
 
+          // CHANGED added default
           switch (e.which) {
               case keys.UP:
               case keys.DOWN:
                   return;
+              default:
           }
 
           clearTimeout(that.onChangeTimeout);

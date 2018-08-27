@@ -20,7 +20,6 @@ class BurgerEatenForm extends Component {
     };
 
     realRender() {
-        console.log("realRender");
         return (<form id="burgerEatenForm" className="text-center" onSubmit={this.handleSubmit}>
             <input type="hidden" name="burgerID" value={this.props.burgerID} />
             <input type="hidden" name="eaterID" value={this.props.eaterID} />

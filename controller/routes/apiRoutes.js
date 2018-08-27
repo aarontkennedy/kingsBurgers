@@ -4,13 +4,17 @@ module.exports = function (app) {
     let cachedBurgerSuggestionsJSON = null;
 
     app.post("/api/eaters", function (req, res) {
-        console.log("/api/eaters");
+        //console.log("/api/eaters");
         console.log(req.body);
         if (!req.body.googleID) {
             return res.sendStatus(400);
         }
 
-        orm.addEater(req.body.googleID, req.body.first,
+        orm.addEater(req.body.googleID,
+            req.body.first,
+            req.body.last,
+            req.body.email,
+            req.body.imageURL,
             function (error, result) {
                 if (error) {
                     console.log(error);

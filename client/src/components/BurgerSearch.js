@@ -15,7 +15,7 @@ class BurgerSearch extends Component {
         $('#burgerAutocomplete').autocomplete({
             serviceUrl: '/autosuggest/burgers',
             onSelect: (suggestion) => {
-                console.log(suggestion);
+                //console.log(suggestion);
                 this.handleSelectedBurger(suggestion.data,
                     suggestion.value,
                     suggestion.description);
@@ -57,9 +57,9 @@ class BurgerSearch extends Component {
     };
 
     handleSelectedBurger = (id, name, description) => {
-        console.log(id);
+        /*console.log(id);
         console.log(name);
-        console.log(description);
+        console.log(description);*/
         this.props.populateSelectedBurger(id, name, description);
         this.clearForms();
     }
@@ -71,7 +71,7 @@ class BurgerSearch extends Component {
         callServer.addBurger(this.state.burgerName.trim(),
             this.state.burgerDescription.trim())
             .then((data) => {
-                console.log(data);
+                //console.log(data);
                 this.handleSelectedBurger(data.data.id,
                     data.data.name,
                     data.data.description);

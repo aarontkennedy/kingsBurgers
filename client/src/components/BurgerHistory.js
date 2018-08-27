@@ -97,6 +97,12 @@ class BurgerHistory extends Component {
     }
 
     render() {
+
+        if (this.props.updateHistory) {
+            this.refresh();
+            this.props.updatedHistory();
+        }
+
         if (this.state.burgers) {
             return this.realRender();
         }

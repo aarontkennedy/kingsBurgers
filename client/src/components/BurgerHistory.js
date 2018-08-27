@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import callServer from '../utils/callServer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { SimpleShareButtons } from "react-simple-share";
 
 class BurgerHistory extends Component {
 
@@ -90,7 +91,15 @@ class BurgerHistory extends Component {
                     <img alt="" src="/images/burgerIconBullet.png" /> Total Different Burgers: {this.getNumDifferentBurgersEaten()}
                 </p>
                 <p className="text-center">
-                    {/* social media here */}
+                    <SimpleShareButtons
+                        url="https://kingsburgers.herokuapp.com"
+                        size="2rem"
+                        whitelist={[
+                            "Facebook",
+                            "Twitter",
+                            "LinkedIn",
+                            "Google+"]}
+                    />
                 </p>
             </div>
         </div>);

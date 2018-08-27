@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './Home.css';
 import { GoogleLogin } from 'react-google-login';
-import BurgerStats from '../BurgerStats';
+import BurgerStats from '../BurgerStats'; 
+import { SimpleShareButtons } from "react-simple-share";
 
 class Home extends Component {
     render() {
@@ -35,7 +36,16 @@ class Home extends Component {
                         width="400" height="300" frameBorder="0" style={{ border: 0 }} allowFullScreen></iframe>
                 </div>
                 <div className="text-center">
-                    {/* put social media here */}
+                    <SimpleShareButtons
+                        url="https://kingsburgers.herokuapp.com"
+                        size="2rem"
+                        whitelist={[
+                            "Facebook",
+                            "Twitter",
+                            "LinkedIn",
+                            "Google+"]}
+                    />
+
                 </div>
             </div>
         </div>);

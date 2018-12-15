@@ -77,10 +77,9 @@ const orm = {
             rating AS burgerRating, 
             DATE_FORMAT(date, "%m/%d/%Y") AS burgerDate
             FROM burgers
-            INNER JOIN burgersEaten
-            ON burgers.id = burgersEaten.burger_id
-            INNER JOIN eaters
-            ON eaters.google_id = ?
+            INNER JOIN burgersEaten ON burgersEaten.burger_id = burgers.id
+            INNER JOIN eaters ON eaters.google_id = burgersEaten.eater_id
+            WHERE eaters.google_id = ?
             ORDER BY burgerDate DESC;`;
         performDatabaseCall(queryString, [eaterID], callback);
 

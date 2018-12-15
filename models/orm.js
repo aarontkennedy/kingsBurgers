@@ -88,10 +88,9 @@ const orm = {
     getBurgersEatenDifferentCount: function (eaterID, callback) {
         var queryString = `SELECT burgers.name AS burgerName, COUNT(*) AS burgerCount
             FROM burgers
-            INNER JOIN burgersEaten
-            ON burgers.id = burgersEaten.burger_id
-            INNER JOIN eaters
-            ON eaters.google_id = ?
+            INNER JOIN burgersEaten ON burgersEaten.burger_id = burgers.id
+            INNER JOIN eaters ON eaters.google_id = burgersEaten.eater_id
+            WHERE eaters.google_id = ?
             GROUP BY burgerName;`;
 
         performDatabaseCall(queryString, [eaterID], callback);

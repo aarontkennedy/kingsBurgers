@@ -1,4 +1,4 @@
-# kingsBurgers
+kingsBurgers
 
 This is a burger tracking node.js powered web application for the King's Bar & Grill.  It get a user's identity via Google oAuth2.  It stores the user's info and burger info.  See it in action at https://kingsburgers.herokuapp.com .
 
@@ -28,3 +28,6 @@ You also need a mySQL database.  The connection info is in a file called mySQLke
 ```
 
 If you look in the code, you can also reference process.env variables to get the above connection/credentials.
+
+Future versions/plans:
+Use React Native to port to iOS and Android.

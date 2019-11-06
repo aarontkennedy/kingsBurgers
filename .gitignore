@@ -6,6 +6,7 @@ log.txt
 googleOAuth2.json
 mySQLkeys.json
 mySQLkeysLocal.json
+mySQLkeys_local.json
 # Logs
 logs
 *.log

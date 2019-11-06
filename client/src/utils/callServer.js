@@ -17,6 +17,11 @@ export default {
   },
   getBurgersEaten: function (eaterID) {
     return axios.get(`/api/burgerseaten/${eaterID.trim()}`);
+  },
+  getBurgerSuggestion: function (eaterID) {
+    return axios.get(`/api/burgersuggestion/${eaterID.trim()}`);
+  },
+  getThreeBurgerSuggestions: function (eaterID) {
+    return axios.get(`/api/threeburgersuggestions/${eaterID.trim()}`);
   }
-
 };

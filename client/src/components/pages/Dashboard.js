@@ -3,6 +3,7 @@ import './Dashboard.css';
 import BurgerSearch from '../BurgerSearch';
 import BurgerEatenForm from '../BurgerEatenForm';
 import BurgerHistory from '../BurgerHistory';
+import BurgerSuggestions from '../BurgerSuggestions';
 import callServer from '../../utils/callServer';
 
 class Dashboard extends Component {
@@ -52,9 +53,15 @@ class Dashboard extends Component {
         return (
             <div className="row">
                 <div className="col-12 col-md-6">
+                    
                     <BurgerSearch populateSelectedBurger={this.populateSelectedBurger} />
+
                 </div>
                 <div className="col-12 col-md-6">
+
+                    <BurgerSuggestions
+                        eaterID={this.props.userID} 
+                        />
 
                     <BurgerEatenForm
                         eaterID={this.props.userID}

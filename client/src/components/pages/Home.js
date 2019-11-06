@@ -42,8 +42,7 @@ class Home extends Component {
                         whitelist={[
                             "Facebook",
                             "Twitter",
-                            "LinkedIn",
-                            "Google+"]}
+                            "LinkedIn"]}
                     />
 
                 </div>

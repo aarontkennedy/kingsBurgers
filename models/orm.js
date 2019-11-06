@@ -11,8 +11,8 @@ const pool = mysql.createPool(databaseConnectionInfo);
 function performDatabaseCall(queryStr, parameters = null, callback) {
     pool.getConnection(function (err, connection) {
         if (err) {
-            //console.log(err);
-            callback(err, { "code": 100, "status": "Error in connection database" });
+            console.log(err);
+            return;
         }
         //console.log('connected as id ' + connection.threadId);
 
@@ -82,7 +82,21 @@ const orm = {
             WHERE eaters.google_id = ?
             ORDER BY burgerDate DESC;`;
         performDatabaseCall(queryString, [eaterID], callback);
-
+    },
+    getBurgerSuggestions: function (eaterID, numSuggestions, callback) {
+        var queryString = `
+            select * from burgers
+            where
+                burgers.id not in (
+                select b.id 
+                from eaters e
+                join burgersEaten be on be.eater_id = e.google_id
+                join burgers b on be.burger_id = b.id
+                where
+                e.google_id = ?)
+            ORDER BY RAND() LIMIT ?;
+            `;
+        performDatabaseCall(queryString, [eaterID, numSuggestions], callback);
     },
     getBurgersEatenDifferentCount: function (eaterID, callback) {
         var queryString = `SELECT burgers.name AS burgerName, COUNT(*) AS burgerCount

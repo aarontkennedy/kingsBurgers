@@ -14,8 +14,9 @@ import './utils/jquery.autocomplete';
 
 
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faMeh, faGrinStars, faTired, faSadTear} from '@fortawesome/free-regular-svg-icons';
-library.add(faMeh, faGrinStars, faTired, faSadTear);
+import { faMeh, faGrinStars, faTired, faSadTear, faTimesCircle} from '@fortawesome/free-regular-svg-icons';
+import { faSyncAlt} from '@fortawesome/free-solid-svg-icons';
+library.add(faMeh, faGrinStars, faTired, faSadTear, faTimesCircle, faSyncAlt);
 
 ReactDOM.render(<App />, document.getElementById('root'));
 registerServiceWorker();

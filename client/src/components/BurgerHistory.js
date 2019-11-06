@@ -6,7 +6,8 @@ import { SimpleShareButtons } from "react-simple-share";
 class BurgerHistory extends Component {
 
     state = {
-        burgers: null
+        burgers: null,
+        closed: false
     };
 
     componentDidMount() {
@@ -90,17 +91,16 @@ class BurgerHistory extends Component {
                 <p>
                     <img alt="" src="/images/burgerIconBullet.png" /> Total Different Burgers: {this.getNumDifferentBurgersEaten()}
                 </p>
-                <p className="text-center">
+                <div className="text-center">
                     <SimpleShareButtons
                         url="https://kingsburgers.herokuapp.com"
                         size="2rem"
                         whitelist={[
                             "Facebook",
                             "Twitter",
-                            "LinkedIn",
-                            "Google+"]}
+                            "LinkedIn"]}
                     />
-                </p>
+                </div>
             </div>
         </div>);
     }
@@ -112,7 +112,7 @@ class BurgerHistory extends Component {
             this.props.updatedHistory();
         }
 
-        if (this.state.burgers) {
+        if (this.state.burgers && !this.state.closed) {
             return this.realRender();
         }
         return "";

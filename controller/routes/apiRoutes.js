@@ -175,4 +175,39 @@ module.exports = function (app) {
             });
     });
 
+    app.get("/api/burgersuggestion/:eater_id", function (req, res) {
+        if (!req.params.eater_id) {
+            return res.sendStatus(400);
+        }
+
+        orm.getBurgerSuggestions(req.params.eater_id, 1, 
+            function (error, result) {
+                if (error) {
+                    console.log(error);
+                    return res.sendStatus(500);
+                }
+                //console.log(result);
+                return res.json(result);
+            });
+    });
+
+    app.get("/api/threeburgersuggestions/:eater_id", function (req, res) {
+        if (!req.params.eater_id) {
+            return res.sendStatus(400);
+        }
+
+        orm.getBurgerSuggestions(req.params.eater_id, 3,
+            function (error, result) {
+                if (error) {
+                    console.log(error);
+                    return res.sendStatus(500);
+                }
+                //console.log(result);
+                return res.json(result);
+            });
+    });
+
+    
+    
+
 };

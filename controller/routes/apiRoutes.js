@@ -105,32 +105,16 @@ module.exports = function (app) {
                 console.log(error);
                 return res.sendStatus(500);
             }
-            //console.log(result);
-            /** 
-             *   results come back like this - not helpful
-             *  [ RowDataPacket { TABLE_NAME: 'burgers', TABLE_ROWS: 4 },
-             *    RowDataPacket { TABLE_NAME: 'burgersEaten', TABLE_ROWS: 6 },
-             *    RowDataPacket { TABLE_NAME: 'eaters', TABLE_ROWS: 1 } ]
-             * 
-             *      I change the array to an object like this:
-             *    {burgers: 4,
-             *     burgersEaten: 6,
-             *     eater: 1
-             *    }
-             */
-            function mapDataObject(arr) {
-                let rv = {};
-                for (let i = 0; i < arr.length; ++i)
-                    // go through each element of the array and 
-                    // give the object a key with table_name and its value
-                    // table_rows.
-                    rv[arr[i].TABLE_NAME] = arr[i].TABLE_ROWS;
-                return rv;
+            console.log(result);
+            let retVal = null;
+            if (result.length) {
+                retVal = {};
+                retVal["burgers"] = result[0].numBurgers;
+                retVal["burgersEaten"] = result[0].numBurgersEaten;
+                retVal["eaters"] = result[0].numEaters; 
             }
-            // pretty flukey case - when the app is run for the first time with
-            // no data - I return null...  It is checked for on the client side.
-            let prettierMappedData = (result.length ? mapDataObject(result) : null);
-            return res.json(prettierMappedData);
+            console.log(retVal);
+            return res.json(retVal);
         });
     });
 

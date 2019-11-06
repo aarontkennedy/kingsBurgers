@@ -14,7 +14,7 @@ class BurgerStats extends Component {
     componentDidMount() {
         callServer.getBurgerStats()
             .then((result) => {
-                //console.log(result);
+                console.log(result);
                 if (!this.unmounted) {
                     this.setState({
                         numBurgers: result.data.burgers,

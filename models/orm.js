@@ -109,11 +109,12 @@ const orm = {
         performDatabaseCall(queryString, [eaterID], callback);
     },
     getRowCountAllTables: function (callback) {
-        var queryString = "SELECT TABLE_NAME, TABLE_ROWS ";
-        queryString += "FROM `information_schema`.`tables` "
-        queryString += "WHERE `table_schema` = '" + databaseConnectionInfo.database + "';";
+        var queryString = `select 
+        (select count(*) from burgers) as numBurgers,
+        (select count(*) from burgersEaten) as numBurgersEaten,
+        (select count(*) from eaters) as numEaters;`;
         performDatabaseCall(queryString, callback);
-    },
+    }
 };
 
 module.exports = orm;

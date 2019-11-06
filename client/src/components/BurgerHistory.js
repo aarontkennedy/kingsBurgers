@@ -18,7 +18,17 @@ class BurgerHistory extends Component {
         callServer.getBurgersEaten(this.props.eaterID)
             .then((results) => {
                 console.log(results);
-                this.setState({ burgers: results.data });
+                // unfortunately mysql doesn't seem to be ordering these by date correctly
+                let burgersEaten = results.data;
+
+                // https://stackoverflow.com/questions/10123953/sort-javascript-object-array-by-date
+                burgersEaten.sort(function(a, b) {
+                    a = new Date(a.burgerDate);
+                    b = new Date(b.burgerDate);
+                    return a>b ? -1 : a<b ? 1 : 0;
+                });
+
+                this.setState({ burgers: burgersEaten });
             });
     }
 

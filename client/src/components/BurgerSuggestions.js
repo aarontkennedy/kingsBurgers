@@ -28,8 +28,8 @@ class BurgerSuggestions extends Component {
     }
 
     render() {
-        if (this.state.closed) { 
-            return (<div></div>); 
+        if (this.state.closed || this.state.burgers.length < 1) { 
+            return ""; 
         }
 
         return (

@@ -22,3 +22,5 @@ When everything is set up, you can run the following commands to run it locally.
 npm install
 npm start
 
+To ship the code to heroku, see https://devcenter.heroku.com/articles/git.
+
